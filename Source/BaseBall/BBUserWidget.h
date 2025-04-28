@@ -18,12 +18,13 @@ class BASEBALL_API UBBUserWidget : public UUserWidget
 public:
     virtual void NativeConstruct() override;
 
+ 
 
     UFUNCTION()
     void OnMessageCommitted(const FText& Text, ETextCommit::Type CommitMethod);
     
     // 위젯에서 입력 받는 텍스트박스
-    UPROPERTY(meta = (BindWidget))
-    UEditableTextBox* InputBox;
+    UPROPERTY( meta = (BindWidget))
+    UEditableTextBox* ChatInputBox;
 
 };

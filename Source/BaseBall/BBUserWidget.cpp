@@ -7,17 +7,22 @@ void UBBUserWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	if (InputBox)
+   
+
+	if (ChatInputBox)
 	{
-		InputBox->OnTextCommitted.AddDynamic(this, &UBBUserWidget::OnMessageCommitted);
+		ChatInputBox->OnTextCommitted.AddDynamic(this, &UBBUserWidget::OnMessageCommitted);
 	}
 
 }
 
 
 
+
 void UBBUserWidget::OnMessageCommitted(const FText& Text, ETextCommit::Type CommitMethod)
 {
+    check(ChatInputBox);
+
     if (CommitMethod == ETextCommit::OnEnter)
     {
         FString ChatMessage = Text.ToString();
@@ -28,7 +33,7 @@ void UBBUserWidget::OnMessageCommitted(const FText& Text, ETextCommit::Type Comm
             UE_LOG(LogTemp, Log, TEXT("Send Chat: %s"), *ChatMessage);
 
             // 채팅 보내고 나면 입력창 초기화
-            InputBox->SetText(FText::GetEmpty());
+            ChatInputBox->SetText(FText::GetEmpty());
         }
     }
 }
